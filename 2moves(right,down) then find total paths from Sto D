@@ -1,0 +1,21 @@
+public class twomove {
+  public static int noofpaths(int[][] arr, int m, int n) {
+    
+    if (m == 0 && n == 0) {
+      return 1;
+    }
+
+    
+    if (m < 0 || n < 0) {
+      return 0;
+    }
+
+    return noofpaths(arr, m - 1, n) + noofpaths(arr, m, n - 1);
+  }
+
+  public static void main(String[] args) {
+    int[][] grid = new int[4][4];  
+    int m = 3, n = 3;
+    System.out.println("Total paths: " + noofpaths(grid, m, n)); 
+  }
+}
