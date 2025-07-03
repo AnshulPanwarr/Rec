@@ -1,0 +1,40 @@
+public class fourmove {
+
+  public static int noofpaths(int[][] grid, boolean[][] visited, int m, int n, int i, int j, int targetX, int targetY) {
+    
+    if (i < 0 || j < 0 || i >= m || j >= n) return 0;
+
+    
+    if (visited[i][j]) return 0;
+
+    
+    if (i == targetX && j == targetY) return 1;
+
+    visited[i][j] = true;
+
+    int totalPaths = 0;
+
+    
+    totalPaths += noofpaths(grid, visited, m, n, i + 1, j, targetX, targetY);
+    totalPaths += noofpaths(grid, visited, m, n, i, j + 1, targetX, targetY);
+    totalPaths += noofpaths(grid, visited, m, n, i - 1, j, targetX, targetY);
+    totalPaths += noofpaths(grid, visited, m, n, i, j - 1, targetX, targetY);
+
+    visited[i][j] = false;
+
+    return totalPaths;
+  }
+
+  public static void main(String[] args) {
+    int m = 4, n = 4; 
+    int[][] grid = new int[m][n];
+    boolean[][] visited = new boolean[m][n];
+
+    
+    int startX = 0, startY = 0;
+    int targetX = 3, targetY = 3;
+
+    int total = noofpaths(grid, visited, m, n, startX, startY, targetX, targetY);
+    System.out.println(total);
+  }
+}
